@@ -1,0 +1,10 @@
+{
+    "footer" : {
+        "High" : "High ",
+        "Low" : "Low",
+        "Transactions" : "Transactions ",
+        "Turnover" : "Turnover ",
+        "latestNews" : "latestNews"
+
+    }
+}

@@ -4,63 +4,164 @@ import axios from "axios";
 import AccessRefreshTokens from "../../RefreshToken/AccessRefreshTokens";
 // Style
 import "./InfiniteScroll.css";
+// Translation hook
+import { useTranslation } from "react-i18next";
 
 function InfiniteScroll() {
   // State
-  const [stockInfo, setStockInfo] = useState([]);
+  const { t, i18n } = useTranslation(); // translation State
+  const [stockInfo, setStockInfo] = useState([]); // Price State
+  const [latestNews, setLatestNews] = useState([]); // News State
+
   useEffect(() => {
     AccessRefreshTokens.getAccessToken();
     axios
-      .get(`https://data.argaam.com/api/v1/json/ir-api/overview/en`, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
+      .get(
+        `https://data.argaam.com/api/v1/json/ir-api/overview/${i18n.language}`,
+        {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
       .then((res) => {
-        console.log(res.data.companyStockSummary);
-        setStockInfo(res.data.companyStockSummary);
+        // console.log(res.data);
+        setStockInfo(res.data.prices);
+        setLatestNews(res.data.latestNews);
+        // console.log(res.data.latestNews);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [localStorage.getItem("token")]);
 
-  return (
-    <>
-      <div className="container">
-        <div className="slider">
-          <div className="slide-track">
-            <div className="slide bg-gradient-danger">
-              <p>
-                <span>High :</span>
-                {stockInfo.high}
-              </p>
-            </div>
-            <div className="slide bg-purple-500">2</div>
-            <div className="slide bg-blue-500">3</div>
-            <div className="slide bg-indigo-500">4</div>
-            <div className="slide bg-pink-500">5</div>
-            <div className="slide bg-green-500">6</div>
-            <div className="slide bg-yellow-500">7</div>
-            <div className="slide bg-red-500">8</div>
-            <div className="slide bg-gray-500 text-white">9</div>
-            <div className="slide bg-blue-800">0</div>
+  const numFormatTwoDig = (num) => num?.toFixed(2);
 
-            {/* <!-- same 9 slides doubled (duplicate) --> */}
-            <div className="slide bg-red-500">1</div>
-            <div className="slide bg-purple-500">2</div>
-            <div className="slide bg-blue-500">3</div>
-            <div className="slide bg-indigo-500">4</div>
-            <div className="slide bg-pink-500">5</div>
-            <div className="slide bg-green-500">6</div>
-            <div className="slide bg-yellow-500">7</div>
-            <div className="slide bg-red-500">8</div>
-            <div className="slide bg-gray-500 text-white">9</div>
-            <div className="slide bg-blue-800">0</div>
+  return (
+    <div
+      style={{ direction: i18n.language === "ar" ? "ltr" : "" }}
+      className="fixed-bottom"
+    >
+      <div className="slider">
+        <div
+          className="slide-track"
+          style={{
+            animationDirection: i18n.language === "ar" ? "reverse" : null,
+            direction: i18n.language === "ar" ? "rtl" : "",
+          }}
+        >
+          <div className="slide d-flex">
+            <p
+              className="slide-text"
+              style={{
+                color: stockInfo[0]?.high < 0 ? "red" : "#3aebad ",
+              }}
+            >
+              <span>{t("footer.High")} :</span>
+              {numFormatTwoDig(stockInfo[0]?.high)}
+            </p>
+
+            <p
+              className="slide-text"
+              style={{
+                color: stockInfo[0]?.low < 0 ? "red" : "#3aebad ",
+              }}
+            >
+              <span>{t("footer.Low")} :</span>
+              {numFormatTwoDig(stockInfo[0]?.low)}
+            </p>
+
+            <p
+              className="slide-text"
+              style={{
+                color: stockInfo[0]?.transactions < 0 ? "red" : "#3aebad ",
+              }}
+            >
+              <span>{t("footer.Transactions")} :</span>
+              {numFormatTwoDig(stockInfo[0]?.transactions)}
+            </p>
+            <p
+              className="slide-text"
+              style={{
+                color: stockInfo[0]?.amount < 0 ? "red" : "#3aebad ",
+              }}
+            >
+              <span>{t("footer.Turnover")} :</span>
+              {numFormatTwoDig(stockInfo[0]?.amount)}
+            </p>
+
+            <p className="slide-text">
+              <span>{t("footer.latestNews")} :</span>
+              {latestNews[0]?.title}
+            </p>
+            <p className="slide-text">
+              <span>{t("footer.latestNews")} :</span>
+              {latestNews[1]?.title}
+            </p>
+            <p className="slide-text">
+              <span>{t("footer.latestNews")} :</span>
+              {latestNews[2]?.title}
+            </p>
+          </div>
+
+          {/* <!-- same 9 slides doubled (duplicate) --> */}
+          <div className="slide d-flex">
+            <p
+              className="slide-text"
+              style={{
+                color: stockInfo[0]?.high < 0 ? "red" : "#3aebad ",
+              }}
+            >
+              <span>{t("footer.High")} :</span>
+              {numFormatTwoDig(stockInfo[0]?.high)}
+            </p>
+
+            <p
+              className="slide-text"
+              style={{
+                color: stockInfo[0]?.low < 0 ? "red" : "#3aebad ",
+              }}
+            >
+              <span>{t("footer.Low")} :</span>
+              {numFormatTwoDig(stockInfo[0]?.low)}
+            </p>
+
+            <p
+              className="slide-text"
+              style={{
+                color: stockInfo[0]?.transactions < 0 ? "red" : "#3aebad ",
+              }}
+            >
+              <span>{t("footer.Transactions")} :</span>
+              {numFormatTwoDig(stockInfo[0]?.transactions)}
+            </p>
+
+            <p
+              className="slide-text"
+              style={{
+                color: stockInfo[0]?.amount < 0 ? "red" : "#3aebad ",
+              }}
+            >
+              <span>{t("footer.Turnover")} :</span>
+              {numFormatTwoDig(stockInfo[0]?.amount)}
+            </p>
+
+            <p className="slide-text">
+              <span>{t("footer.latestNews")} :</span>
+              {latestNews[0]?.title}
+            </p>
+            <p className="slide-text">
+              <span>{t("footer.latestNews")} :</span>
+              {latestNews[1]?.title}
+            </p>
+            <p className="slide-text">
+              <span>{t("footer.latestNews")} :</span>
+              {latestNews[2]?.title}
+            </p>
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
