@@ -33,7 +33,7 @@ function InfiniteScroll() {
       .catch((err) => {
         console.log(err);
       });
-  }, [localStorage.getItem("token")]);
+  }, [i18n.language, localStorage.getItem("token")]);
 
   const numFormatTwoDig = (num) => num?.toFixed(2);
 
