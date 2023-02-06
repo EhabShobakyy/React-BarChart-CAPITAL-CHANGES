@@ -1,6 +1,7 @@
 //bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
+
 // Install I-18Next
 import "./i18n";
 

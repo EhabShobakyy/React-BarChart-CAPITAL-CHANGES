@@ -1,5 +1,4 @@
 .slider {
-    height: 60px;
     position: relative;
     width: 100%;
     background-color: #2866a0 !important;
@@ -27,9 +26,9 @@
   /*  IMPORTANT CODE BELOW */
   
   .slide-track {
-    width: calc(250px * 20);
+    width: calc(420px * 20);
     display: flex;
-    animation: scroll 20s linear infinite;
+    animation: scroll 25s linear infinite;
     justify-content: space-between;
     /* animation-direction: reverse; */
   }
@@ -38,9 +37,9 @@
   }
   
   .slide-track2 {
-    width: calc(250px * 15);
+    width: calc(420px * 15);
     display: flex;
-    animation: scroll2 15s linear infinite;
+    animation: scroll2 22s linear infinite;
     justify-content: space-between;
   }
 
@@ -51,7 +50,7 @@
   
   .slide {
     width: 100%;
-    height: 60px;
+    height: 40px;
     color: white;
     display: grid;
     place-items: center;
@@ -75,19 +74,19 @@
   
   @keyframes scroll {
     0% {
-      transform: translateX(0px);
+      transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-250px * 10));
+      transform: translateX(calc(-420px * 10));
     }
   }
   
   @keyframes scroll2 {
     0% {
-      transform: translateX(0px);
+      transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-250px * 5));
+      transform: translateX(calc(-420px * 5));
     }
   }
   
@@ -122,3 +121,33 @@
       }
     }
   } */
+
+  .footer-sar {
+    font-size: 9px;
+    color: white;
+    margin: 0px 3px;
+  }
+
+  .calendar-date {
+    border: 1px solid white;
+    border-radius: 5px;
+    color: white;
+    padding: 0px 8px;
+  }
+  .footer-change span {
+    color: white;
+    margin: 0px 4px;
+  }
+.extra-footer {
+  margin: 0px 10px 0px 4px;
+}
+.tasi-footer {
+  margin: 0px 1px;
+}
+.footer-change {
+    background-color: #57C39E;
+    border-radius: 5px;
+    padding: 2px 6px;
+    font-weight: 600;
+    margin: 0px 16px;
+  }

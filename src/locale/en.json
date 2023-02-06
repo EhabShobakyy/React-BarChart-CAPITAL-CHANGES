@@ -4,7 +4,11 @@
         "Low" : "Low",
         "Transactions" : "Transactions ",
         "Turnover" : "Turnover ",
-        "latestNews" : "latestNews"
+        "latestNews" : "latestNews",
+        "Calendar" : "Calendar",
+        "TASI" : "TASI:",
+        "EXTRA" : "EXTRA",
+        "SAR" : "SAR"
 
     }
 }

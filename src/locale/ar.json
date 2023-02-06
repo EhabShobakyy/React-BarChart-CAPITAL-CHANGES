@@ -4,6 +4,10 @@
         "Low" : "الأدني",
         "Transactions" : "عدد الصفقات ",
         "Turnover" : "قيمه التداول",
-        "latestNews" : "أحدث الأخبار "
+        "latestNews" : "أحدث الأخبار ",
+        "Calendar" : "المفكره",
+        "TASI" : "تاسي:",
+        "EXTRA" : "إكسترا",
+        "SAR" : "ريال"
     }
 }

@@ -14,6 +14,16 @@ function LangBtn() {
         </button>
       )}
 
+      {i18n.language === "en-US" && (
+        <button
+          onClick={() => {
+            i18n.changeLanguage("ar");
+          }}
+        >
+          عربي
+        </button>
+      )}
+
       {i18n.language === "ar" && (
         <button
           onClick={() => {
