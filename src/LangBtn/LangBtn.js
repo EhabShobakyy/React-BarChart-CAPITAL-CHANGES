@@ -1,10 +1,18 @@
 import { useTranslation } from "react-i18next";
+import React, { useEffect, useState } from "react";
+
 import "./LangBtn.css";
 function LangBtn() {
   const [t, i18n] = useTranslation();
+  const [lang, setLang] = useState("en");
+
+  useEffect(() => {
+    setLang(i18n.language);
+  }, [i18n.language, lang]);
+
   return (
     <div className="lang-btn">
-      {i18n.language === "en" && (
+      {lang === "en" ? (
         <button
           onClick={() => {
             i18n.changeLanguage("ar");
@@ -12,19 +20,7 @@ function LangBtn() {
         >
           عربي
         </button>
-      )}
-
-      {i18n.language === "en-US" && (
-        <button
-          onClick={() => {
-            i18n.changeLanguage("ar");
-          }}
-        >
-          عربي
-        </button>
-      )}
-
-      {i18n.language === "ar" && (
+      ) : (
         <button
           onClick={() => {
             i18n.changeLanguage("en");
@@ -33,6 +29,16 @@ function LangBtn() {
           English
         </button>
       )}
+
+      {/* {i18n.language === "ar" && (
+        <button
+          onClick={() => {
+            i18n.changeLanguage("en");
+          }}
+        >
+          English
+        </button>
+      )} */}
     </div>
   );
 }
